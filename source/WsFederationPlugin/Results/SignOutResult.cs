@@ -53,7 +53,9 @@ namespace IdentityServer3.WsFederation.Results
                 sb.AppendFormat(format, url);
             }
 
-            var content = new StringContent(sb.ToString(), Encoding.UTF8, "text/html");
+            var doc = string.Format("<html><body>{0}</body></html>", sb);
+
+            var content = new StringContent(doc, Encoding.UTF8, "text/html");
 
             Logger.Debug("Returning WS-Federation signout response");
             return new HttpResponseMessage { Content = content };
